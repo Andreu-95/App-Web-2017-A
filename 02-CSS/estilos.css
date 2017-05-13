@@ -1,0 +1,25 @@
+#idmalicioso {
+    border-width: 2em;
+    background-color: red;
+    color: white;
+}
+
+.boton-cuidado {
+    background-color: orangered;
+    color: white;
+}
+
+.boton-cuidado:hover {
+    background-color: red;
+    border-color: blue;
+    font-size: 5em;
+}
+
+.boton-cuidado:focus {
+    border: solid;
+}
+
+.boton-exito {
+    background-color: darkgreen;
+    color: white;
+}
