@@ -1,8 +1,7 @@
 /**
  * Created by poli_ on 3/6/2017.
  */
-
-let arreglo = [
+var arreglo = [
     {
         nombre: "Andres",
         apellido: "Guerra",
@@ -34,7 +33,6 @@ let arreglo = [
         id: 5
     }
 ];
-
-arreglo.filter((valor) => {
-    return valor.nota < 7;
+arreglo.filter(function (valor) {
+    return valor.id > 3;
 });
