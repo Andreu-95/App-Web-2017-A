@@ -21,6 +21,6 @@ console.log(resultado2);
 // Si alguno cumple -> verdadero
 let resultado3 = arreglo.some((valor, indice, arreglo) => {
     return (valor > 6);
-})
+});
 
 console.log(resultado3);
