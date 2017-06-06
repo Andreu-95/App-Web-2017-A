@@ -4,6 +4,29 @@
 
 const fs = require('fs');
 const express = require('express');
+const calc = require('twj-a-guerra');
+
+var Passwords = require('machinepack-passwords');
+
+let a = 2;
+let b = 3;
+let resultado = calc.calculadoraUDLA.sumar(a,b);
+
+console.log(`Resultado: ${resultado}`);
+
+// Encrypt a string using the BCrypt algorithm.
+Passwords.encryptPassword({
+    password: '1234',
+}).exec({
+// An unexpected error occurred.
+    error: function (err) {
+        console.log(`Error: ${err}`);
+    },
+// OK.
+    success: function (result) {
+        console.log(`Resultado: ${result}`);
+    },
+});
 
 console.log("Empieza");
 
