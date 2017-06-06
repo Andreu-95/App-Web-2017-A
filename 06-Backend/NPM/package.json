@@ -1,0 +1,15 @@
+{
+  "name": "twj-a-guerra",
+  "version": "1.0.2",
+  "description": "Calculadora",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "calculadora",
+    "prueba"
+  ],
+  "author": "Andres Guerra",
+  "license": "MIT"
+}
