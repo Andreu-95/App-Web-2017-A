@@ -22,4 +22,11 @@ Comando para instalar Sails:
 ```
 > sails lift
 > sails lift --port 8080
+> node app.js
+```
+
+## Comando para crear controladores
+
+```
+> sails generate controller nuevoControlador
 ```
