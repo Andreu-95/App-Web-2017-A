@@ -21,6 +21,6 @@ let arreglo = [
     }
 ];
 
-/*arreglo.find(function (value) {
+arreglo.find(function (value) {
     return value.apellido == "Chavez"
-})*/
+});
