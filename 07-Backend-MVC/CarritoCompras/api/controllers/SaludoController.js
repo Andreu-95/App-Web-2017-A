@@ -16,5 +16,20 @@ module.exports = {
         else {
             return res.send("Error en método");
         }
+    },
+    crearUsuarioQuemado: function (req, res) {
+        var parametros = req.allParams();
+        var nuevoUsuario = {
+            nombre: parametros.nombre,
+            apellido: parametros.apellido,
+            correo: parametros.correo,
+            password: parametros.password,
+            fechaNacimiento: parametros.fechaNacimiento
+        };
+        Usuario.create(nuevoUsuario).exec(function (err, newUser) {
+            if (err)
+                return res.serverError('Error al crear');
+            return res.ok(newUser);
+        });
     }
 };

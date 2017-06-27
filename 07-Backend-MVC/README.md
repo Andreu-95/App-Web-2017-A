@@ -30,3 +30,9 @@ Comando para instalar Sails:
 ```
 > sails generate controller nuevoControlador
 ```
+
+## Comando para crear modelos
+
+```
+> sails generate model nuevoModelo
+```
