@@ -35,7 +35,7 @@ module.exports.routes = {
   'get /': {
     view: 'homepage'
   },
-  'perfil': {
+  '/perfil': {
     view: 'UsuarioGestion/perfil'
   }
 
