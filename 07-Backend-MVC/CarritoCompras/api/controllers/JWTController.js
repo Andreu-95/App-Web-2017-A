@@ -31,7 +31,7 @@ module.exports = {
 
     if (parametros.token) {
       var decodificar = jwt.verify(parametros.token, 'mi mama me mima');
-      return res.ok('Decodificado');
+      return res.ok(decodificar);
     } else {
       return res.badRequest('No envía token')
     }
