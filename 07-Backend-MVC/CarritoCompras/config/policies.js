@@ -50,6 +50,6 @@ module.exports.policies = {
 	// }
 
   VistaController: {
-    vistaOculta: ['sessionAuth']
+    vistaOculta: ['validarCabeceraAuth']
   }
 };

@@ -20,7 +20,7 @@ module.exports = {
           id: parametros.id
         }
       }, 'mi mama me mima');
-
+      res.set('Authorization', token);
       return res.ok(token);
     } else {
       return res.badRequest('No envía ID');

@@ -15,7 +15,7 @@ module.exports = function(req, res, next) {
    return res.forbidden('You are not permitted to perform this action.');
    */
 
-  if (res.header('Authorization')) {
+  if (res.headers.Authorization) {
     return next();
   } else {
     return res.forbidden('No tiene cabecera de autorizacion');
