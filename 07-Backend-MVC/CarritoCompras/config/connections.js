@@ -40,13 +40,13 @@ module.exports.connections = {
   * Run: npm install sails-mysql                                             *
   *                                                                          *
   ***************************************************************************/
-  dockerMySQL: {
+  /*dockerMySQL: {
     adapter: 'sails-mysql',
     host: '192.168.99.100',
     user: 'andreu', //optional
     password: 'pruebaAndreu', //optional
     database: 'prueba' //optional
-  },
+  },*/
 
   /***************************************************************************
   *                                                                          *
