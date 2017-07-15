@@ -23,8 +23,6 @@ module.exports = {
             nombre: parametros.nombre,
             apellido: parametros.apellido,
             correo: parametros.correo,
-            password: parametros.password,
-            fechaNacimiento: parametros.fechaNacimiento
         };
         Usuario.create(nuevoUsuario).exec(function (err, newUser) {
             if (err)

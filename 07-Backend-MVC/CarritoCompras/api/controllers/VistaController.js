@@ -1,13 +1,18 @@
+/**
+ * Created by poli_ on 1/7/2017.
+ */
 module.exports = {
     vistaOculta: function (req, res) {
         return res.view('Oculto/sorpresa');
     },
     homepage: function (req, res) {
-        var usuarioModelo = {
-            nombre: 'Andres',
-            apellido: 'Guerra',
-            id: 1
-        };
-        return res.view('homepage', { usuario: usuarioModelo });
+        Usuario.find().exec(function (err, usuariosEncontrados) {
+            if (err)
+                return res.serverError('Problema');
+            return res.view('homepage', { usuarios: usuariosEncontrados });
+        });
+    },
+    crearUsuario: function (req, res) {
+        return res.view('crearUsuario');
     }
 };

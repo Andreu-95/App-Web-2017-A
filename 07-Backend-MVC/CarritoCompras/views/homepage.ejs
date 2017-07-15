@@ -1,8 +1,45 @@
-<h1>Homepage</h1>
+<br>
+<h1>Los Papus</h1>
+<br>
 
-<p><%= usuario.nombre %></p>
-<p><%= usuario.apellido%></p>
+<% for (var i = 0; i<usuarios.length; i++) { %>
 
-<% var numero = 5 %>
-<% usuario.id = usuario.id + 5 %>
-<p><%= usuario.id %></p>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card" style="width: 20rem;">
+        <div class="card-block">
+          <h4 class="card-title"><%= usuarios[i].nombre%> <%= usuarios[i].apellido %></h4>
+          <p class="card-text"><%= usuarios[i].correo %></p>
+          <a href="#" class="btn btn-primary">Algún link vacio</a>
+        </div>
+      </div>
+    </div>
+    <% i += 1 %>
+    <% if (i < usuarios.length) { %>
+      <div class="col-md-4">
+        <div class="card" style="width: 20rem;">
+          <div class="card-block">
+            <h4 class="card-title"><%= usuarios[i].nombre%> <%= usuarios[i].apellido %></h4>
+            <p class="card-text"><%= usuarios[i].correo %></p>
+            <a href="#" class="btn btn-primary">Algún link vacio</a>
+          </div>
+        </div>
+      </div>
+    <% } %>
+    <% i += 1 %>
+    <% if (i < usuarios.length) { %>
+      <div class="col-md-4">
+        <div class="card" style="width: 20rem;">
+          <div class="card-block">
+            <h4 class="card-title"><%= usuarios[i].nombre%> <%= usuarios[i].apellido %></h4>
+            <p class="card-text"><%= usuarios[i].correo %></p>
+            <a href="#" class="btn btn-primary">Algún link vacio</a>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  </div>
+  <br>
+
+<% } %>
+
