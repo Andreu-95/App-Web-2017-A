@@ -30,11 +30,17 @@ module.exports = {
       nombre: parametros.nombre,
       apellido: parametros.apellido,
       correo: parametros.correo,
+      password: parametros.password,
+      fechaNacimiento: parametros.fechaNacimiento
     };
 
     Usuario.create(nuevoUsuario).exec((err, newUser) => {
       if (err) return res.serverError('Error al crear');
-      return res.ok(newUser);
+
+      Usuario.find().exec((err, usuariosEncontrados) => {
+        if (err) return res.serverError('Error en Usuarios');
+        return res.view('homepage', {usuarios: usuariosEncontrados});
+      });
     });
   }
 };

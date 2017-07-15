@@ -1,33 +1,39 @@
 <br>
 <h3>Crear Usuario</h3>
 
-<div class="form-group row">
-  <label for="nombre" class="col-2 col-form-label">Text</label>
-  <div class="col-10">
-    <input class="form-control" type="text" placeholder="Ingrese su Nombre" id="nombre">
+<form action="/Saludo/crearUsuarioQuemado" method="post">
+  <div class="form-group row">
+    <label for="nombre" class="col-2 col-form-label">Nombre</label>
+    <div class="col-10">
+      <input class="form-control" type="text" placeholder="Ingrese su Nombre" id="nombre" name="nombre">
+    </div>
   </div>
-</div>
-<div class="form-group row">
-  <label for="apellido" class="col-2 col-form-label">Text</label>
-  <div class="col-10">
-    <input class="form-control" type="text" placeholder="Ingrese su Apellido" id="apellido">
+  <div class="form-group row">
+    <label for="apellido" class="col-2 col-form-label">Apellido</label>
+    <div class="col-10">
+      <input class="form-control" type="text" placeholder="Ingrese su Apellido" id="apellido" name="apellido">
+    </div>
   </div>
-</div>
-<div class="form-group row">
-  <label for="correo" class="col-2 col-form-label">Email</label>
-  <div class="col-10">
-    <input class="form-control" type="email" placeholder="Ingrese su Correo" id="correo">
+  <div class="form-group row">
+    <label for="correo" class="col-2 col-form-label">Correo</label>
+    <div class="col-10">
+      <input class="form-control" type="email" placeholder="Ingrese su Correo" id="correo" name="correo">
+    </div>
   </div>
-</div>
-<div class="form-group row">
-  <label for="password" class="col-2 col-form-label">Password</label>
-  <div class="col-10">
-    <input class="form-control" type="password" placeholder="Ingrese su Password" id="password">
+  <div class="form-group row">
+    <label for="password" class="col-2 col-form-label">Password</label>
+    <div class="col-10">
+      <input class="form-control" type="password" placeholder="Ingrese su Password" id="password" name="password">
+    </div>
   </div>
-</div>
-<div class="form-group row">
-  <label for="fechaNacimiento" class="col-2 col-form-label">Date</label>
-  <div class="col-10">
-    <input class="form-control" type="date" placeholder="Ingrese su Fecha de Nacimiento" id="fechaNacimiento">
+  <div class="form-group row">
+    <label for="fechaNacimiento" class="col-2 col-form-label">Fecha Nacimiento</label>
+    <div class="col-10">
+      <input class="form-control" type="date" placeholder="Ingrese su Fecha de Nacimiento" id="fechaNacimiento" name="fechaNacimiento">
+    </div>
   </div>
-</div>
+  <button type="button" class="btn btn-outline-secondary">Botón</button>
+  <button type="reset" class="btn btn-outline-success">Reset</button>
+  <button type="submit" class="btn btn-outline-danger">Crear</button>
+</form>
+
