@@ -11,6 +11,7 @@
           <h4 class="card-title"><%= usuarios[i].nombre%> <%= usuarios[i].apellido %></h4>
           <p class="card-text"><%= usuarios[i].correo %></p>
           <a href="#" class="btn btn-primary">Algún link vacio</a>
+          <a href="/Saludo/borrarUsuario?id=<%= usuarios[i].id %>" class="btn btn-outline-danger">Borrar</a>
         </div>
       </div>
     </div>
@@ -22,6 +23,7 @@
             <h4 class="card-title"><%= usuarios[i].nombre%> <%= usuarios[i].apellido %></h4>
             <p class="card-text"><%= usuarios[i].correo %></p>
             <a href="#" class="btn btn-primary">Algún link vacio</a>
+            <a href="/Saludo/borrarUsuario?id=<%= usuarios[i].id %>" class="btn btn-outline-danger">Borrar</a>
           </div>
         </div>
       </div>
@@ -34,6 +36,7 @@
             <h4 class="card-title"><%= usuarios[i].nombre%> <%= usuarios[i].apellido %></h4>
             <p class="card-text"><%= usuarios[i].correo %></p>
             <a href="#" class="btn btn-primary">Algún link vacio</a>
+            <a href="/Saludo/borrarUsuario?id=<%= usuarios[i].id %>" class="btn btn-outline-danger">Borrar</a>
           </div>
         </div>
       </div>
@@ -42,4 +45,3 @@
   <br>
 
 <% } %>
-
