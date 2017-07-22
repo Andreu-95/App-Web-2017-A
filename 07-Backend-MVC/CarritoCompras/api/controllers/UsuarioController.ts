@@ -59,5 +59,28 @@ module.exports = {
     } else {
       res.badRequest();
     }
+  },
+
+  buscarUsuario: (req, res) => {
+    let params = req.allParams();
+
+    if (params.search) {
+      Usuario.find({
+        or: [
+              {nombre: params.search},
+              {apellido: params.search}
+            ]
+      }).exec((err, usuarioEncontrado) => {
+        if (err) return res.serverError('Error al buscar');
+
+        if (usuarioEncontrado.length != 0) {
+          return res.view('homepage', {usuarios: usuarioEncontrado});
+        } else {
+          return res.redirect('/');
+        }
+      });
+    } else {
+      return res.redirect('/');
+    }
   }
 };
