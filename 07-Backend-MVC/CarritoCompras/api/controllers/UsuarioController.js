@@ -1,6 +1,3 @@
-/**
- * Created by poli_ on 19/6/2017.
- */
 module.exports = {
     welcome: function (req, res) {
         // POST
@@ -38,5 +35,22 @@ module.exports = {
                 return res.view('homepage', { usuarios: usuariosEncontrados });
             });
         });
+    },
+    borrarUsuario: function (req, res) {
+        var params = req.allParams();
+        if (params.id) {
+            Usuario.destroy({ id: params.id }).exec(function (err, usuarioBorrado) {
+                if (err)
+                    return res.serverError('Error al borrar');
+                Usuario.find().exec(function (err, usuariosEncontrados) {
+                    if (err)
+                        return res.serverError('Error en Usuarios');
+                    return res.view('homepage', { usuarios: usuariosEncontrados });
+                });
+            });
+        }
+        else {
+            res.badRequest();
+        }
     }
 };

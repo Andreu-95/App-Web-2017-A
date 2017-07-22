@@ -1,6 +1,8 @@
 /**
- * Created by poli_ on 19/6/2017.
+ * Created by poli_ on 22/7/2017.
  */
+declare let module;
+declare let Usuario;
 
 module.exports = {
   welcome: (req, res) => {
@@ -40,5 +42,22 @@ module.exports = {
         return res.view('homepage', {usuarios: usuariosEncontrados});
       });
     });
+  },
+
+  borrarUsuario: (req, res) => {
+    let params = req.allParams();
+
+    if (params.id) {
+      Usuario.destroy({id: params.id}).exec((err, usuarioBorrado) => {
+        if (err) return res.serverError('Error al borrar');
+
+        Usuario.find().exec((err, usuariosEncontrados) => {
+          if (err) return res.serverError('Error en Usuarios');
+          return res.view('homepage', {usuarios: usuariosEncontrados});
+        });
+      });
+    } else {
+      res.badRequest();
+    }
   }
 };
