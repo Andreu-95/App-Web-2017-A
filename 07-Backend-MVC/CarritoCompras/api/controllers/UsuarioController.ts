@@ -82,5 +82,26 @@ module.exports = {
     } else {
       return res.redirect('/');
     }
+  },
+
+  editarUsuario: (req, res) => {
+    let params = req.allParams();
+
+    if (params.id) {
+
+      if (params.nombre == '') delete params.nombre
+      if (params.apellido == '') delete params.apellido
+      if (params.correo == '') delete params.correo
+      if (params.password == '') delete params.password
+      if (params.fechaNacimiento == '') delete params.fechaNacimiento
+
+      Usuario.update({id: params.id}, params).exec((err, usuarioEditado) => {
+        if (err) return res.serverError('Error al editar');
+        return res.redirect('/');
+      });
+
+    } else {
+      return res.redirect('/');
+    }
   }
 };
