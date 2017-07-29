@@ -1,14 +1,30 @@
 /**
- * Matricula.js
- *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
- * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
+ * Created by poli_ on 29/7/2017.
  */
-
 module.exports = {
-
-  attributes: {
-
-  }
+    attributes: {
+        horaFechaInicio: {
+            type: 'datetime'
+        },
+        horaFechaFin: {
+            type: 'datetime'
+        },
+        estado: {
+            type: 'string',
+            enum: ['Matriculado', 'Pendiente', 'Denegado'],
+            defaultsTo: 'Pendiente'
+        },
+        idPeriodoAcademico: {
+            model: 'PeriodoAcademico',
+            required: true
+        },
+        idUsuario: {
+            model: 'Usuario',
+            required: true
+        },
+        materiasMatriculas: {
+            collection: 'MateriaMatricula',
+            via: 'idMatricula'
+        }
+    }
 };
-

@@ -1,14 +1,19 @@
 /**
- * Carrera.js
- *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
- * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
+ * Created by poli_ on 29/7/2017.
  */
-
 module.exports = {
-
-  attributes: {
-
-  }
+    attributes: {
+        nombre: {
+            type: 'string',
+            required: true
+        },
+        idDepartamento: {
+            model: 'Departamento',
+            required: true
+        },
+        periodosAcademicos: {
+            collection: 'PeriodoAcademico',
+            via: 'idCarrera'
+        }
+    }
 };
-
