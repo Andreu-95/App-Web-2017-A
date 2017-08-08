@@ -37,10 +37,7 @@ module.exports = {
     Usuario.create(nuevoUsuario).exec((err, newUser) => {
       if (err) return res.serverError('Error al crear');
 
-      Usuario.find().exec((err, usuariosEncontrados) => {
-        if (err) return res.serverError('Error en Usuarios');
-        return res.view('homepage', {usuarios: usuariosEncontrados});
-      });
+      res.redirect('/');
     });
   },
 
@@ -51,10 +48,7 @@ module.exports = {
       Usuario.destroy({id: params.id}).exec((err, usuarioBorrado) => {
         if (err) return res.serverError('Error al borrar');
 
-        Usuario.find().exec((err, usuariosEncontrados) => {
-          if (err) return res.serverError('Error en Usuarios');
-          return res.view('homepage', {usuarios: usuariosEncontrados});
-        });
+        res.redirect('/');
       });
     } else {
       res.badRequest();
@@ -102,6 +96,46 @@ module.exports = {
 
     } else {
       return res.redirect('/');
+    }
+  },
+
+  addUsuarioCarrito: (req, res) => {
+    let params = req.allParams();
+
+    if (params.id) {
+      let cookies = req.cookies.carrito;
+      console.log('Cookies:', cookies);
+
+      if (cookies == undefined) {
+        let nuevoUser = [];
+        nuevoUser.push(params.id);
+        res.cookie('carrito', {idsCliente: nuevoUser});
+
+        Usuario.find().exec((err, usuariosEncontrados) => {
+          if (err) return res.serverError('Error en Usuarios');
+          return res.view('homepage', {usuarios: usuariosEncontrados, carrito: 1});
+        });
+      } else {
+        let cartUsers = cookies.idsCliente;
+
+        let existsUser = cartUsers.find((idUser) => {
+          return idUser == params.id;
+        });
+
+        if (existsUser) {
+          return res.redirect('/');
+        } else {
+          cartUsers.push(params.id)
+          res.cookie('carrito', {idsCliente: cartUsers});
+
+          Usuario.find().exec((err, usuariosEncontrados) => {
+            if (err) return res.serverError('Error en Usuarios');
+            return res.view('homepage', {usuarios: usuariosEncontrados, carrito: cookies.idsCliente.length});
+          });
+        }
+      }
+    } else {
+      res.badRequest('Sin parametros');
     }
   }
 };

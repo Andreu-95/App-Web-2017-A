@@ -6,10 +6,18 @@ module.exports = {
         return res.view('Oculto/sorpresa');
     },
     homepage: function (req, res) {
+        var cookie = req.cookies.carrito;
+        var users;
+        if (cookie == undefined) {
+            users = 0;
+        }
+        else {
+            users = cookie.idsCliente.length;
+        }
         Usuario.find().exec(function (err, usuariosEncontrados) {
             if (err)
                 return res.serverError('Problema');
-            return res.view('homepage', { usuarios: usuariosEncontrados });
+            return res.view('homepage', { usuarios: usuariosEncontrados, carrito: users });
         });
     },
     crearUsuario: function (req, res) {

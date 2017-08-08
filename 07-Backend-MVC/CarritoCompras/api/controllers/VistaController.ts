@@ -6,9 +6,19 @@ module.exports = {
     return res.view('Oculto/sorpresa');
   },
   homepage: (req, res) => {
+
+    let cookie = req.cookies.carrito;
+    let users;
+
+    if (cookie == undefined) {
+      users = 0;
+    } else {
+      users = cookie.idsCliente.length;
+    }
+
     Usuario.find().exec((err, usuariosEncontrados) => {
       if (err) return res.serverError('Problema');
-      return res.view('homepage', {usuarios: usuariosEncontrados});
+      return res.view('homepage', {usuarios: usuariosEncontrados, carrito: users});
     });
   },
   crearUsuario: (req, res) => {

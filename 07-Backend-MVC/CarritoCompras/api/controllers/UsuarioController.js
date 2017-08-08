@@ -29,11 +29,7 @@ module.exports = {
         Usuario.create(nuevoUsuario).exec(function (err, newUser) {
             if (err)
                 return res.serverError('Error al crear');
-            Usuario.find().exec(function (err, usuariosEncontrados) {
-                if (err)
-                    return res.serverError('Error en Usuarios');
-                return res.view('homepage', { usuarios: usuariosEncontrados });
-            });
+            res.redirect('/');
         });
     },
     borrarUsuario: function (req, res) {
@@ -42,11 +38,7 @@ module.exports = {
             Usuario.destroy({ id: params.id }).exec(function (err, usuarioBorrado) {
                 if (err)
                     return res.serverError('Error al borrar');
-                Usuario.find().exec(function (err, usuariosEncontrados) {
-                    if (err)
-                        return res.serverError('Error en Usuarios');
-                    return res.view('homepage', { usuarios: usuariosEncontrados });
-                });
+                res.redirect('/');
             });
         }
         else {
@@ -97,6 +89,44 @@ module.exports = {
         }
         else {
             return res.redirect('/');
+        }
+    },
+    addUsuarioCarrito: function (req, res) {
+        var params = req.allParams();
+        if (params.id) {
+            var cookies_1 = req.cookies.carrito;
+            console.log('Cookies:', cookies_1);
+            if (cookies_1 == undefined) {
+                var nuevoUser = [];
+                nuevoUser.push(params.id);
+                res.cookie('carrito', { idsCliente: nuevoUser });
+                Usuario.find().exec(function (err, usuariosEncontrados) {
+                    if (err)
+                        return res.serverError('Error en Usuarios');
+                    return res.view('homepage', { usuarios: usuariosEncontrados, carrito: 1 });
+                });
+            }
+            else {
+                var cartUsers = cookies_1.idsCliente;
+                var existsUser = cartUsers.find(function (idUser) {
+                    return idUser == params.id;
+                });
+                if (existsUser) {
+                    return res.redirect('/');
+                }
+                else {
+                    cartUsers.push(params.id);
+                    res.cookie('carrito', { idsCliente: cartUsers });
+                    Usuario.find().exec(function (err, usuariosEncontrados) {
+                        if (err)
+                            return res.serverError('Error en Usuarios');
+                        return res.view('homepage', { usuarios: usuariosEncontrados, carrito: cookies_1.idsCliente.length });
+                    });
+                }
+            }
+        }
+        else {
+            res.badRequest('Sin parametros');
         }
     }
 };
