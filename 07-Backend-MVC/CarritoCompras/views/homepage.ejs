@@ -2,6 +2,43 @@
 <h1>Los Papus</h1>
 <br>
 
+<div class="row">
+  <div class="col-sm-8">
+    <div class="form-group row">
+      <label for="nombre" class="col-2 col-form-label">Nombre</label>
+      <div class="col-10">
+        <input class="form-control" type="text" placeholder="Ingrese su Nombre" id="nombre" name="nombre">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="apellido" class="col-2 col-form-label">Apellido</label>
+      <div class="col-10">
+        <input class="form-control" type="text" placeholder="Ingrese su Apellido" id="apellido" name="apellido">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="correo" class="col-2 col-form-label">Correo</label>
+      <div class="col-10">
+        <input class="form-control" type="email" placeholder="Ingrese su Correo" id="correo" name="correo">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="password" class="col-2 col-form-label">Password</label>
+      <div class="col-10">
+        <input class="form-control" type="password" placeholder="Ingrese su Password" id="password" name="password">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="fechaNacimiento" class="col-2 col-form-label">Fecha Nacimiento</label>
+      <div class="col-10">
+        <input class="form-control" type="date" placeholder="Ingrese su Fecha de Nacimiento" id="fechaNacimiento" name="fechaNacimiento">
+      </div>
+    </div>
+    <button class="btn btn-success" onclick="crearNuevoUsuario()">Crear Usuario</button>
+  </div>
+</div>
+<br>
+
 <% for (var i = 0; i<usuarios.length; i++) { %>
 
   <div class="row">
@@ -15,6 +52,7 @@
           <br>
           <a href="/Usuario/borrarUsuario?id=<%= usuarios[i].id %>" class="btn btn-outline-danger">Borrar</a>
           <a href="/editarUsuario?id=<%= usuarios[i].id %>" class="btn btn-outline-success">Editar</a>
+          <a href="/Usuario/addUsuarioCarrito?id=<%= usuarios[i].id %>" class="btn btn-outline-primary">Añadir</a>
         </div>
       </div>
     </div>
@@ -30,6 +68,7 @@
             <br>
             <a href="/Usuario/borrarUsuario?id=<%= usuarios[i].id %>" class="btn btn-outline-danger">Borrar</a>
             <a href="/editarUsuario?id=<%= usuarios[i].id %>" class="btn btn-outline-success">Editar</a>
+            <a href="/Usuario/addUsuarioCarrito?id=<%= usuarios[i].id %>" class="btn btn-outline-primary">Añadir</a>
           </div>
         </div>
       </div>
@@ -46,6 +85,7 @@
             <br>
             <a href="/Usuario/borrarUsuario?id=<%= usuarios[i].id %>" class="btn btn-outline-danger">Borrar</a>
             <a href="/editarUsuario?id=<%= usuarios[i].id %>" class="btn btn-outline-success">Editar</a>
+            <a href="/Usuario/addUsuarioCarrito?id=<%= usuarios[i].id %>" class="btn btn-outline-primary">Añadir</a>
           </div>
         </div>
       </div>
@@ -54,3 +94,51 @@
   <br>
 
 <% } %>
+
+<script>
+
+  var url = "http://localhost:1337/Usuario"
+  var metodo = "POST"
+
+  function crearNuevoUsuario () {
+    var nombre = document.getElementById("nombre").value
+    var apellido = document.getElementById("apellido").value
+    var correo = document.getElementById("correo").value
+    var password = document.getElementById("password").value
+    var fechaNacimiento = document.getElementById("fechaNacimiento").value
+
+    var usuario = {
+      nombre: nombre,
+      apellido: apellido,
+      correo: correo,
+      password: password,
+      fechaNacimiento: fechaNacimiento
+    }
+
+    var params = "?nombre=" + usuario.nombre
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = agregarAInterfaz;
+    xhttp.open(metodo, url + params)
+    xhttp.send();
+  }
+
+  function agregarAInterfaz () {
+
+    if (this.readyState == 4 && this.statusCode == 201) {
+      var usuarioCreado = JSON.parse(xhttp.responseText);
+
+      var nuevoNodo = document.createElement("div");
+      nuevoNodo.className = "col-sm-4";
+
+      var htmlNuevoUsuario = "<h1>" + usuarioCreado.nombre + "</h1>";
+      nuevoNodo.innerHTML = htmlNuevoUsuario;
+
+      var contenedor = document.getElementById("contenedor");
+      contenedor.appendChild(nuevoNodo);
+    } else {
+        console.log("Fallo")
+    }
+
+  }
+</script>
