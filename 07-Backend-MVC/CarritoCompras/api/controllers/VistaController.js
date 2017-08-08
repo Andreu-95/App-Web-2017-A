@@ -9,10 +9,10 @@ module.exports = {
         var cookie = req.cookies.carrito;
         var users;
         if (cookie == undefined) {
-            users = 0;
+            users = [];
         }
         else {
-            users = cookie.idsCliente.length;
+            users = cookie.idsCliente;
         }
         Usuario.find().exec(function (err, usuariosEncontrados) {
             if (err)

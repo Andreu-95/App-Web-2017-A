@@ -94,33 +94,33 @@ module.exports = {
     addUsuarioCarrito: function (req, res) {
         var params = req.allParams();
         if (params.id) {
-            var cookies_1 = req.cookies.carrito;
-            console.log('Cookies:', cookies_1);
-            if (cookies_1 == undefined) {
-                var nuevoUser = [];
-                nuevoUser.push(params.id);
-                res.cookie('carrito', { idsCliente: nuevoUser });
+            var cookies = req.cookies.carrito;
+            console.log('Cookies:', cookies);
+            if (cookies == undefined) {
+                var nuevoUser_1 = [];
+                nuevoUser_1.push(params.id);
+                res.cookie('carrito', { idsCliente: nuevoUser_1 });
                 Usuario.find().exec(function (err, usuariosEncontrados) {
                     if (err)
                         return res.serverError('Error en Usuarios');
-                    return res.view('homepage', { usuarios: usuariosEncontrados, carrito: 1 });
+                    return res.view('homepage', { usuarios: usuariosEncontrados, carrito: nuevoUser_1 });
                 });
             }
             else {
-                var cartUsers = cookies_1.idsCliente;
-                var existsUser = cartUsers.find(function (idUser) {
+                var cartUsers_1 = cookies.idsCliente;
+                var existsUser = cartUsers_1.find(function (idUser) {
                     return idUser == params.id;
                 });
                 if (existsUser) {
                     return res.redirect('/');
                 }
                 else {
-                    cartUsers.push(params.id);
-                    res.cookie('carrito', { idsCliente: cartUsers });
+                    cartUsers_1.push(params.id);
+                    res.cookie('carrito', { idsCliente: cartUsers_1 });
                     Usuario.find().exec(function (err, usuariosEncontrados) {
                         if (err)
                             return res.serverError('Error en Usuarios');
-                        return res.view('homepage', { usuarios: usuariosEncontrados, carrito: cookies_1.idsCliente.length });
+                        return res.view('homepage', { usuarios: usuariosEncontrados, carrito: cartUsers_1 });
                     });
                 }
             }

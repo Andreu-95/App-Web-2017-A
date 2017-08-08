@@ -41,7 +41,14 @@
 
 <div class="row">
   <div class="col-sm-6">
-    <h3> Usuarios en Carrito: <%= typeof carrito == 'undefined' ? '0' : carrito %></h3>
+    <h3> Usuarios en Carrito: <%= typeof carrito == 'undefined' ? '0' : carrito.length %></h3>
+    <% if ( carrito != undefined ) { %>
+      <ul>
+        <% for (var j=0; j < carrito.length; j++) { %>
+          <li>ID User: <%= carrito[j] %> </li>
+        <% } %>
+      </ul>
+    <% } %>
   </div>
 </div>
 <br>

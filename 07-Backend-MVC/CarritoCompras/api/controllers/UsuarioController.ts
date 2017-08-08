@@ -113,7 +113,7 @@ module.exports = {
 
         Usuario.find().exec((err, usuariosEncontrados) => {
           if (err) return res.serverError('Error en Usuarios');
-          return res.view('homepage', {usuarios: usuariosEncontrados, carrito: 1});
+          return res.view('homepage', {usuarios: usuariosEncontrados, carrito: nuevoUser});
         });
       } else {
         let cartUsers = cookies.idsCliente;
@@ -130,7 +130,7 @@ module.exports = {
 
           Usuario.find().exec((err, usuariosEncontrados) => {
             if (err) return res.serverError('Error en Usuarios');
-            return res.view('homepage', {usuarios: usuariosEncontrados, carrito: cookies.idsCliente.length});
+            return res.view('homepage', {usuarios: usuariosEncontrados, carrito: cartUsers});
           });
         }
       }
